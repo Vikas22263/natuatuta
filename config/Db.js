@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 
 const dbconnect = async () => {
   try {
-    const dbconn = await mongoose.connect("mongodb+srv://mongo:nOcFZCwAvstIG16Z@cluster0.gbaiebn.mongodb.net/E-com");
+    const url=process.env.URL
+    const dbconn = await mongoose.connect(url);
     if (dbconn) {
       console.log("Database connected");
       return dbconn; // Optionally return the connection object

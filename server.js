@@ -7,6 +7,8 @@ import categoryRoutes from "./routes/categoryroutes.js";
 import cors from "cors";
 import path from "path"
 import productRoutes from "./routes/productRoutes.js";
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
 const app = express();
 
@@ -16,11 +18,14 @@ app.use(cors());
 //db connection
 dbconnect();
 //config dotenv
-dotenv.config();
+dotenv.config({path:'./.env'});
+
 
 //middleares
 app.use(morgan("dev"));
 app.use(express.json());
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 app.use(express.static(path.join(__dirname,'./client')))
 
 //Routes
